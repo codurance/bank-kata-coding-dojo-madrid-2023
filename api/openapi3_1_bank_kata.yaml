@@ -2,7 +2,7 @@ openapi: 3.1.0
 info:
   title: Swagger Bank Kata - OpenAPI 3.1
   description: |-
-    This is a specifica of the bank kata repository
+    This is a specification of the bank kata repository
   version: "v1"
 paths:
   /deposit:
@@ -76,7 +76,7 @@ components:
       properties:
         amount:
           type: array
-          items: 
+          items:
             $ref: '#/components/schemas/Transaction'
 
-          
+
