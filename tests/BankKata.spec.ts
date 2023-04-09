@@ -4,7 +4,7 @@ import {startApi} from '../src/api/api';
 
 describe('Bank Kata Acceptance', () => {
 
-  it('Should allow user to deposit and withdraw money in different dates and after allow request transactions done', async () => {
+  it('Should allow user to deposit and withdraw money in different dates and after allow user to request the transactions done', async () => {
     let apiPort = 3000;
     const api = await startApi(apiPort);
 
