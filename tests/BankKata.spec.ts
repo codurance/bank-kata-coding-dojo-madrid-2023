@@ -17,16 +17,41 @@ describe('Bank Kata Acceptance', () => {
   });
 
   async function executeUserJourney() {
-    await axios.post('http://localhost:3000/deposit', {
-      amount: 1000
-    });
-    await axios.post('http://localhost:3000/deposit', {
-      amount: 2000
-    });
-    await axios.post('http://localhost:3000/withdraw', {
-      amount: 1000
-    });
-    return await axios.get('http://localhost:3000/transactions');
+    await userDeposit(1000);
+    await userDeposit(2000);
+    await userWithdraw(500);
+    return await userRetrieveMovements();
+  }
+
+  async function userDeposit(amount: number) {
+    try {
+      await axios.post('http://localhost:3000/deposit', {
+        amount
+      });
+    } catch (error: any) {
+      error.message = `Error while executing deposit of ${amount}. ${error.message}`;
+      throw error;
+    }
+  }
+
+  async function userWithdraw(amount: number) {
+    try {
+      await axios.post('http://localhost:3000/withdraw', {
+        amount
+      });
+    } catch (error: any) {
+      error.message = `Error while executing withdraw of ${amount}. ${error.message}`;
+      throw error;
+    }
+  }
+
+  async function userRetrieveMovements() {
+    try {
+      return await axios.get('http://localhost:3000/transactions');
+    } catch (error: any) {
+      error.message = `Error while retrieving movements. ${error.message}`;
+      throw error;
+    }
   }
 
   function thenTransactionsShouldBeTheExpected(response: AxiosResponse<any>) {
