@@ -1,6 +1,6 @@
 import axios, {AxiosResponse} from 'axios';
 
-import {startApi} from '../api/api';
+import {startApi} from '../src/api/api';
 
 describe('Bank Kata Acceptance', () => {
 
