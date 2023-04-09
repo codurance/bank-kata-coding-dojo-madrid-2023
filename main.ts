@@ -1,3 +1,3 @@
-import {app} from "./api/api";
+import {startApi} from "./api/api";
 
-app.listen(3000);
+startApi(3000);
