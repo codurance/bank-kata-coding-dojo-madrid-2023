@@ -7,13 +7,13 @@ Hay que implementar un POC (prueba de concepto) de un API REST para un banco, el
 - POST **/deposit**: Permite al usuario depositar dinero. El cuerpo de la petición tiene el siguiente formato:
 ```json
 {
-  "amount": number // Cantidad de dinero a depositar, debe ser un número mayor a 0
+  "amount": number // Cantidad de dinero a depositar
 }
 ```
 - POST **/withdraw**: Permite al usuario retirar dinero. El cuerpo de la petición tiene el siguiente formato:
 ```json
 {
-  "amount": number // Cantidad de dinero a retirar, debe ser un número mayor a 0
+  "amount": number // Cantidad de dinero a retirar
 }
 ```
 - GET **/transactions**: Permite al usuario ver los movimientos que ha realizado. El listado de movimientos deberá estar ordenado de movimientos más recientes a movimientos más antiguos. El formato del listado de movimientos es el siguiente:
