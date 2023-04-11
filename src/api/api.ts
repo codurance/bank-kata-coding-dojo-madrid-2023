@@ -1,6 +1,7 @@
 import express from 'express';
 import http from "http";
 const app = express();
+app.use(express.json());
 
 app.get('/hello-world', (req, res) => {
     res.json({
