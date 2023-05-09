@@ -1,6 +1,7 @@
 import axios, {AxiosResponse} from 'axios';
 
 import {startApi} from '../src/api/api';
+import {deposit} from "../src/bank/deposit";
 
 describe('Bank Kata Acceptance', () => {
 
@@ -16,6 +17,16 @@ describe('Bank Kata Acceptance', () => {
     }
   });
 
+  describe('Deposit', () => {
+    it('Should store the amount given by the user', () => {
+      let transactionsRepository = {
+        save: jest.fn()
+      };
+      deposit(1000, transactionsRepository);
+      expect(transactionsRepository.save).toBeCalledWith(1000);
+    })
+  })
+
   async function executeUserJourney() {
     await userDeposit(1000);
     await userDeposit(2000);
@@ -29,7 +40,7 @@ describe('Bank Kata Acceptance', () => {
         amount
       });
     } catch (error: any) {
-      error.message = `Error while executing deposit of ${amount}. ${error.message}`;
+      error.message = `Error while executing deposit of ${amount}. ${error.message} ${error.response.data}`;
       throw error;
     }
   }
@@ -40,7 +51,7 @@ describe('Bank Kata Acceptance', () => {
         amount
       });
     } catch (error: any) {
-      error.message = `Error while executing withdraw of ${amount}. ${error.message}`;
+      error.message = `Error while executing withdraw of ${amount}. ${error.message} ${error.response.data}`;
       throw error;
     }
   }
@@ -49,7 +60,7 @@ describe('Bank Kata Acceptance', () => {
     try {
       return await axios.get('http://localhost:3000/transactions');
     } catch (error: any) {
-      error.message = `Error while retrieving movements. ${error.message}`;
+      error.message = `Error while retrieving movements. ${error.message} ${error.response.data}`;
       throw error;
     }
   }
